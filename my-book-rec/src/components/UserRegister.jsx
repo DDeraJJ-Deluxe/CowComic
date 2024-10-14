@@ -1,36 +1,39 @@
+import { Link } from 'react-router-dom';
 import '../css/userregister.css';
 import user_icon from '../assets/user.png'
 import email_icon from '../assets/email.png'
 import pass_icon from '../assets/padlock.png'
 
 // this component creates the user register component
-function UserLogin() {
+function UserRegister() {
    return (
-      <div className = "reg-container">
-         <div className = "reg-header">
-            <div className = "reg-text">Sign Up</div>
-            <div className = "underline"></div>
+      <div id="reg-container">
+         <div id="reg-header">
+            <div id="reg-text">Sign Up</div>
          </div>
-         <div className = "reg-info">
-            <div className = "reg-inputs">
-               <img src = {user_icon} alt = "" width = "20px" height = "20px"/>
-               <input type = "text"/>
+         <div id="reg-info">
+            <div className="reg-inputs">
+               <img src = {user_icon} alt = "user icon" />
+               <input type = "text" placeholder="Username"/>
             </div>
-            <div className = "reg-inputs">
-               <img src = {email_icon} alt = "" width = "20px" height = "20px"/>
-               <input type = "email"/>
+            <div className="reg-inputs">
+               <img src = {email_icon} alt = "email icon" />
+               <input type = "email" placeholder="Email"/>
             </div>
-            <div className = "reg-inputs">
-               <img src = {pass_icon} alt = "" width = "20px" height = "20px"/>
-               <input type = "password"/>
+            <div className="reg-inputs">
+               <img src = {pass_icon} alt = "password lock icon" />
+               <input type = "password" placeholder="Password"/>
             </div>
          </div>
-         <div className = "reg-submit-container">
+         <div id="login-link">
+            Already have an account?{' '}
+            <Link to="/login">Login here!</Link>
+         </div>
+         <div id="reg-submit-container">
             <div className="submit">Sign Up</div>
-            <div className="submit">Login</div>
          </div>
       </div>
    );
 }
 
-export default UserLogin
+export default UserRegister

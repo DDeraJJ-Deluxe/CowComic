@@ -6,8 +6,9 @@ function Login() {
 
    return (
       <>
-         <h1>Login Test</h1>
+         <br></br>
          <UserLogin />
+         <br></br>
       </>
    )
 }
