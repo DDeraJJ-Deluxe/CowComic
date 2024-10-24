@@ -6,8 +6,9 @@ function Home() {
 
    return (
       <>
-         <h1>Home Test</h1>
          <Survey />
+         <button id="submit-btn">Submit</button>
+         <p id="chatGPT-reponse"></p>
       </>
    )
 }

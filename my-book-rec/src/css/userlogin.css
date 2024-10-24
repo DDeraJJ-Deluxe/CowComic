@@ -80,6 +80,7 @@
 
 #reg-link a:hover {
    text-decoration: underline;
+   color: #E2FDFF;
 }
 
 #login-submit-container {
