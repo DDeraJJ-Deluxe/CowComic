@@ -102,3 +102,8 @@
    font-weight: bold;
    cursor: pointer;
 }
+
+.submit:hover {
+   color: #5465FF;
+   background-color: #E2FDFF;
+}
