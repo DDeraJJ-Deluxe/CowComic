@@ -102,3 +102,7 @@
    font-weight: bold;
    cursor: pointer;
 }
+
+.error-message {
+   color: #E2FDFF;
+ }
