@@ -2,15 +2,21 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 // this component creates the navigation bar section
-function NavBar({isLoggedIn, onLogout}) {
+function NavBar({isLoggedIn, username, onLogout}) {
+   const handleLogoutClick = (event) => {
+      event.preventDefault(); // prevents default navigation behavior
+      onLogout(); // calls the logout function
+   };
+
    return (
       <nav id="nav">
-      <Link to="/" className="nav-title" id="cc-title">CowComic</Link>
+      <Link to="/" id="cc-title">CowComic</Link>
          <ul className="nav-links">
             {isLoggedIn ? (
                <>
                   <li><Link to="/saved-books">Saved Books</Link></li>
-                  <li><button onClick={onLogout} className="nav-btn">Logout</button></li>
+                  {/* <li><button onClick={onLogout} className="logout-btn">Logout</button></li> */}
+                  <li><a href="/" onClick={handleLogoutClick}>Logout</a></li>
                </>
             ) : (
                <>

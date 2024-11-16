@@ -28,7 +28,6 @@ function UserRegister() {
                username: username,
                email: user.email
             });
-            console.log('User registered and data stored in Firestore');
          }
       } catch (err) {
          // Customize error messages based on Firebase error codes
@@ -36,8 +35,14 @@ function UserRegister() {
             case 'auth/invalid-email':
                setError('Please enter a valid email address.');
                break;
+            case 'auth/missing-email':
+               setError('Please provide an email address.');
+               break;
             case 'auth/weak-password':
                setError('Password should be at least 6 characters.');
+               break;
+            case 'auth/missing-password':
+               setError('Please provide a password.');
                break;
             case 'auth/email-already-in-use':
                setError('This email is already registered. Please log in or use another email.');

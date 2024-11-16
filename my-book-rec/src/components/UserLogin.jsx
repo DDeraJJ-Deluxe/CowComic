@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase'; // Use this instead of calling getAuth() again
+import { auth } from './firebase';
 import '../css/userlogin.css';
 import email_icon from '../assets/email.png';
 import pass_icon from '../assets/padlock.png';
@@ -15,8 +15,7 @@ function UserLogin() {
    const handleLogin = async () => {
       try {
          await signInWithEmailAndPassword(auth, email, password);
-         console.log('User logged in successfully');
-         navigate('/loginhomepage');
+         navigate('/login-home');
       } catch (err) {
          setError('Invalid username or password');
       }
