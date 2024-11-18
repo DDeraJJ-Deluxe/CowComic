@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Assuming you are using axios for the API request
-import '../css/survey.css';
+import axios from "axios"; // using axios for the API request
+import '../css/survey.css';// CSS for styling
+
+
 
 function Survey() {
   const [genres, setGenres] = useState([]);
@@ -18,6 +20,18 @@ function Survey() {
     );
   };
 
+  // Generate the prompt for the API
+  const generatePrompt = () => {
+    return `Find a book recommendation and summary of context based on the following preferences:
+    - Genres: ${genres.join(', ')}
+    - Keyword: "${keyword}"
+    - Age Rating: "${ageRating}"
+    - Publish Date: "${publishDate}"
+    - Page Count: "${pageCount}"`;
+  };
+
+
+    // Handles form submission and API request
   const handleSubmit = async () => {
     if (genres.length === 0 || !keyword || !ageRating || !publishDate || !pageCount) {
       setError('Please fill out all fields.');
@@ -28,16 +42,31 @@ function Survey() {
     setError('');
     
     try {
-      // Assuming you have an API endpoint for the recommendation
-      const response = await axios.post('API KEY HERE', {
-        genres,
-        keyword,
-        ageRating,
-        publishDate,
-        pageCount
-      });
       
-      setRecommendation(response.data.recommendation);
+      
+      const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
+      // Generate the prompt
+      const prompt = generatePrompt();
+      
+      // Send API request
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',  // Correct endpoint for chat-based models
+        {
+          model: 'gpt-3.5-turbo',  // Use the model you want (can also use 'gpt-4' or other models)
+          messages: [
+            { role: 'system', content: 'You are a book recommendation assistant.' },
+            { role: 'user', content: prompt },
+          ],
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${API_KEY}`, // Pass your OpenAI API key here
+          },
+        }
+      );
+      
+      setRecommendation(response.data.choices[0].message.content);
     } catch (err) {
       setError('Error fetching the recommendation. Please try again.');
     } finally {
@@ -49,11 +78,13 @@ function Survey() {
     <div className="survey-container">
       <h2>Book Survey Component</h2>
 
-      {/* Genres */}
-      <label>Genres: **</label>
+      {/* Genres Section */}
+      <label>Genres: </label>
       <div className="genres">
 
-        {['Adventure', 'Fantasy', 'Mystery', 'Sci-Fi', 'Romance', 'Horror', 'Historical', 'Biography', 'Fiction', 'Non-Fiction', 'Comedy', 'Drama'].map((genre) => (
+        {['Adventure', 'Fantasy', 'Mystery', 'Sci-Fi', 'Romance', 'Horror',
+          'Historical', 'Biography', 'Fiction', 'Non-Fiction', 'Comedy', 
+          'Drama', 'Thriller', 'Self-Help', 'Poetry', 'Science','Crime','Epic','Satire','Psychology','Memoir'].map((genre) => (
           <div
             key={genre}
             className={`genre-box ${genres.includes(genre) ? 'selected' : ''}`}
@@ -77,42 +108,18 @@ function Survey() {
       {/* Age Rating */}
       <div className="age-rating">
         <label>Age Rating:</label>
-        <label>
-          <input
-            type="radio"
-            name="age-rating"
-            value="5-12"
-            onChange={(e) => setAgeRating(e.target.value)}
-          /> 5 - 12 yr old
-        </label>
-        <br />
-        <label>
-          <input
-            type="radio"
-            name="age-rating"
-            value="13-18"
-            onChange={(e) => setAgeRating(e.target.value)}
-          /> 13 - 18 yr old
-        </label>
-        <br />
-        <label>
-          <input
-            type="radio"
-            name="age-rating"
-            value="18+"
-            onChange={(e) => setAgeRating(e.target.value)}
-          /> 18+ yr old
-        </label>
-        <br />
-        <label>
-          <input
-            type="radio"
-            name="age-rating"
-            value="no-preference"
-            onChange={(e) => setAgeRating(e.target.value)}
-          /> No age preference
-        </label>
+        {['5-12', '13-18', '18+', 'no-preference'].map((age) => (
+          <label key={age}>
+            <input
+              type="radio"
+              name="age-rating"
+              value={age}
+              onChange={(e) => setAgeRating(e.target.value)}
+            /> {age === 'no-preference' ? 'No age preference' : `${age} year old`}
+          </label>
+        ))}
       </div>
+      
 
       {/* Publish Date */}
       <label htmlFor="publish-date">Publish Date:</label>
