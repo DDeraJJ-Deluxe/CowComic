@@ -52,6 +52,7 @@ function Survey() {
       {/* Genres */}
       <label>Genres: **</label>
       <div className="genres">
+
         {['Adventure', 'Fantasy', 'Mystery', 'Sci-Fi', 'Romance', 'Horror', 'Historical', 'Biography', 'Fiction', 'Non-Fiction', 'Comedy', 'Drama'].map((genre) => (
           <div
             key={genre}

@@ -1,8 +1,10 @@
 .survey-container {
+
    margin: 20px;
    font-family: Arial, sans-serif;
    max-width: 800px; /* Set a max-width for the container */
    width: 100%; /* Make the container responsive */
+
    padding: 20px;
    box-sizing: border-box; /* Include padding in the width calculation */
    background-color: #f0f1f7; /* Background color for contrast */
