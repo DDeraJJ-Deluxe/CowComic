@@ -1,0 +1,109 @@
+#reg-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: fit-content;
+   background: #9BB1FF;
+   padding: 15px;
+   border-radius: 5px;
+   margin: auto;
+}
+
+#reg-header {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 5px;
+   margin-top: 20px;
+}
+
+#reg-text {
+   color: #5465FF;
+   font-size: 32px;
+   font-weight: bold;
+}
+
+#reg-info{
+   margin-top: 30px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+.reg-inputs{
+   display: flex;
+   align-items: center;
+   width: 400px;
+   height: auto;
+   background: #5465FF;
+   border-radius: 5px;
+}
+
+.reg-inputs img {
+   filter: invert(100%);
+   margin: 0px 15px;
+   width: 20px;
+   height: 20px;
+   object-fit: contain;
+   vertical-align: middle;
+}
+
+.reg-inputs input {
+   height: 50px;
+   width: 350px;
+   background: transparent;
+   border: none;
+   outline: none;
+   color: #E2FDFF;
+   font-size: 18px;
+   vertical-align: middle;
+   padding: 0; 
+   margin: 0; 
+}
+
+.reg-inputs input::placeholder {
+   color: #E2FDFF;
+}
+
+#login-link {
+   text-align: center;
+   margin: 16px;
+   font-size: 18px;
+   color: #5465FF;
+}
+
+#login-link a {
+   color: #5465FF;
+   text-decoration: none;
+   font-weight: bold;
+}
+
+#login-link a:hover {
+   text-decoration: underline;
+   color: #E2FDFF;
+}
+
+#reg-submit-container {
+   display: flex;
+   gap: 30px;
+   margin: auto;
+}
+
+.submit {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 150px;
+   height: 50px;
+   background-color: #5465FF;
+   color: #E2FDFF;
+   border-radius: 50px;
+   font-size: 18px;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.submit:hover {
+   color: #5465FF;
+   background-color: #E2FDFF;
+}

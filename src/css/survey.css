@@ -1,0 +1,82 @@
+
+/* Survey Container */
+.survey-container {
+
+   margin: 20px auto;
+   font-family: Arial, sans-serif;
+   max-width: 700px; /* Set a max-width for the container */
+   width: 90%; /* Make the container responsive */
+
+   padding: 20px;
+   box-sizing: border-box; /* Include padding in the width calculation */
+   background-color: #f0f1f7; /* Background color for contrast */
+   border-radius: 8px; /* Rounded corners */
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for better visibility */
+   margin-left: auto; /* Center the container */
+   margin-right: auto; /* Center the container */
+   display: flex;
+   flex-direction: column;
+   align-items: center; /* Center content horizontally */
+}
+
+/* Input and Select */
+input[type="text"], select {
+   width: 50%; /* Set width to 80% to leave some space on either side */
+   max-width: 400px; /* Set a max-width for larger screens */
+   padding: 8px;
+   margin-top: 5px;
+   margin-bottom: 15px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+}
+/* Genre Section */
+.genre-box {
+   flex: 1 1 calc(25% - 10px); /* Adjust width; 4 boxes per row */
+   max-width: 30%; /* Prevent larger boxes */
+   background-color: #f0f0f0;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   padding: 7px;
+   text-align: center; /* Center text */
+   cursor: pointer; /* Indicate the genre box is clickable */
+   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.genre-box:hover {
+   background-color: #e0e0e0; /* Light gray on hover */
+}
+
+.genre-box.selected {
+   background-color: #BFD7FF; /* Blue color when selected */
+   color: #5465FF; /* Text color changes to white */
+}
+
+.genre-label {
+   font-weight: bold;
+   display: block;
+   margin-bottom: 8px;
+}
+
+.genres {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 8px; /* Space between boxes */
+   margin-bottom: 20px;
+   justify-content: center; /* Center the genre boxes horizontally */
+}
+
+.age-rating {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   margin: 15px 0; /* Compact margin */
+   font-size: 16px;
+ }
+ 
+ .age-rating label {
+   margin-bottom: 8px;
+ }
+
+label {
+   display: block; /* Each label on a new line */
+}

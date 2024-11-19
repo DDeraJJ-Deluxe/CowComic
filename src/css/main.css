@@ -1,0 +1,85 @@
+/* colors: #5465FF #788BFF #9BB1FF #BFD7FF #E2FDFF */
+
+body {
+  background-color: #E2FDFF;
+  margin: 0;
+ }
+
+ main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+ 
+ #cc-title {
+  font-size: 24px;
+ }
+ 
+ #nav {
+  background-color: #BFD7FF;
+  color: #5465FF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  padding: 0 16px;
+  font-family: Verdana;
+ }
+ 
+ #nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 16px;
+ }
+ 
+ #nav a {
+  color: #5465FF;
+  text-decoration: none;
+ }
+ 
+ #nav li a {
+  display: block;
+  color: #5465FF;
+  font-size: 24px;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+ }
+ 
+ #nav li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #5465FF;
+  transition: width 0.3s ease, background-color 0.3s ease;
+ }
+ 
+ #nav li a:hover::after {
+  width: 100%;
+  left: 0;
+ }
+ 
+ #foot {
+  margin: 0;
+  background-color: #BFD7FF;
+  color: #5465FF;
+  font-size: 20px;
+  font-family: Verdana;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+ }
