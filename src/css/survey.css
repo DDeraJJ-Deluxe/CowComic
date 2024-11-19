@@ -9,7 +9,7 @@
 
    padding: 20px;
    box-sizing: border-box; /* Include padding in the width calculation */
-   background-color: #f0f1f7; /* Background color for contrast */
+   background-color: #9bb1ff; /* Background color for contrast */
    border-radius: 8px; /* Rounded corners */
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for better visibility */
    margin-left: auto; /* Center the container */
@@ -43,12 +43,12 @@ input[type="text"], select {
 }
 
 .genre-box:hover {
-   background-color: #e0e0e0; /* Light gray on hover */
+   background-color: #b9b9eb; /* Light gray on hover */
 }
 
 .genre-box.selected {
-   background-color: #BFD7FF; /* Blue color when selected */
-   color: #5465FF; /* Text color changes to white */
+   background-color: #5465ff; /* Blue the box when selected */
+   color: #e8e9ef; /* Text color changes to white */
 }
 
 .genre-label {
