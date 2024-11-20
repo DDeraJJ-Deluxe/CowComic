@@ -22,12 +22,15 @@ function Survey() {
 
   // Generate the prompt for the API
   const generatePrompt = () => {
-    return `Find a book recommendation and summary of context based on the following preferences:
-    - Genres: ${genres.join(', ')}
+    return `Recommend me a book with the following genres: ${genres.join(', ')}
+
+    Please also consider:
     - Keyword: "${keyword}"
     - Age Rating: "${ageRating}"
     - Publish Date: "${publishDate}"
-    - Page Count: "${pageCount}"`;
+    - Page Count: "${pageCount}"
+    
+    Only give me the book title, author, age rating, country published, and a 2-3 sentence summary.`;
   };
 
 
@@ -44,7 +47,10 @@ function Survey() {
     try {
       
       
-      const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
+      const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
+      if (!API_KEY) {
+        throw new Error("API key is missing or not loaded correctly.");
+      }
       // Generate the prompt
       const prompt = generatePrompt();
       
@@ -61,12 +67,17 @@ function Survey() {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${API_KEY}`, // Pass your OpenAI API key here
+            'Authorization': `Bearer ${API_KEY}`, //Authorization header with API key
           },
         }
       );
       
-      setRecommendation(response.data.choices[0].message.content);
+      if (response.data && response.data.choices && response.data.choices[0]) {
+        setRecommendation(response.data.choices[0].message.content);
+      } else {
+        throw new Error('Unexpected API response format.');
+      }
+
     } catch (err) {
       setError('Error fetching the recommendation. Please try again.');
     } finally {
@@ -77,14 +88,14 @@ function Survey() {
   return (
     <div className="survey-container">
       <h2>Book Survey Component</h2>
+      
 
       {/* Genres Section */}
       <label>Genres: </label>
       <div className="genres">
 
-        {['Adventure', 'Fantasy', 'Mystery', 'Sci-Fi', 'Romance', 'Horror',
-          'Historical', 'Biography', 'Fiction', 'Non-Fiction', 'Comedy', 
-          'Drama', 'Thriller', 'Self-Help', 'Poetry', 'Science','Crime','Epic','Satire','Psychology','Memoir'].map((genre) => (
+        {['Adventure', 'Biography', 'Comedy', 'Drama', 'Fantasy', 'Fiction', 'Historical', 'Horror',
+        'Mystery', 'Non-Fiction', 'Romance', 'Science-Fiction','Crime','Psychology', 'Satire'].map((genre) => (
           <div
             key={genre}
             className={`genre-box ${genres.includes(genre) ? 'selected' : ''}`}
@@ -154,7 +165,14 @@ function Survey() {
       </button>
 
       {error && <p className="error-message">{error}</p>}
-      {recommendation && <p className="recommendation-message">{recommendation}</p>}
+      
+      {recommendation && (<div className="recommendation-message">
+    {recommendation.split('\n').map((line, index) => (
+      <p key={index}>{line}</p>
+    ))}
+  </div>
+)}
+
     </div>
   );
 }
