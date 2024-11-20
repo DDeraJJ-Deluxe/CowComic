@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center; /* Center horizontally */
     justify-content: center; /* Center vertically */
-    height: 120vh; /* Full height of the viewport */
+    height: 180vh; /* Full height of the viewport */
     padding: 20px;
     box-sizing: border-box;
 }
@@ -28,6 +28,7 @@
     transform: scale(1.05); /* Slightly enlarge the button on hover */
 }
 
+
 /* Styling for the ChatGPT response text */
 #chatGPT-reponse {
     font-size: 16px;
@@ -45,8 +46,14 @@
   }
   /* the color when chatGPT give out answers  */
   .recommendation-message {
-    color: green;
+    color: #5465ff;
     font-weight: bold;
+    background-color: white;
+    text-align: Center;
+    padding: 8px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px; 
   }
   
   /* Styling the submit button */

@@ -30,7 +30,7 @@ function Survey() {
     - Publish Date: "${publishDate}"
     - Page Count: "${pageCount}"
     
-    Only give me one book recommendation with the book title, author, age rating, and the country it's published in.`;
+    Only give me the book title, author, age rating, country published, and a 2-3 sentence summary.`;
   };
 
 
@@ -94,22 +94,8 @@ function Survey() {
       <label>Genres: </label>
       <div className="genres">
 
-        {['Adventure', 'Fantasy', 'Mystery', 'Science Fiction', 'Romance', 'Horror',
-    'Thriller', 'Comedy', 'Drama', 'Historical Fiction', 'Biography', 'Memoir',
-    'Self-Help', 'Science', 'Psychology', 'Philosophy', 'True Crime', 'Politics',
-    'History', 'Travel', 'Health & Wellness', 'Dystopian', 'Urban Fantasy',
-    'Paranormal Romance', 'New Adult', 'Dark Fantasy',
-    'Cozy Mystery', 'Techno-Thriller', 'Eco-Fiction', 'Cli-Fi', 'African Literature',
-    'Asian Literature', 'Middle Eastern Literature', 'Latin American Literature',
-    'Indigenous Stories', 'European Classics', 'Afro-Futurism', 'War Stories',
-    'Survival Stories', 'Coming-of-Age', 'Family Saga', 'Feminist Literature',
-    'LGBTQ+', 'Inspirational', 'Gothic', 'Magical Realism', 'Cyberpunk', 
-    'Steampunk', 'Space Opera', 'High Fantasy', 'Low Fantasy', 'Hard Science Fiction',
-    'Speculative Fiction', 'Poetry', 'Epic Poetry', 'Haiku', 'Sonnets', 'Lyric Poetry',
-    'Essays', 'Personal Narratives', 'Satire', 'Parody', 'Political Humor', 
-    'Absurdist Fiction', 'Sports Fiction', 'Detective Stories', 'Noir', 
-    'Literary Fiction', 'Experimental Fiction', 'Epistolary Novels', 
-    'Short Stories', 'Anthologies'].map((genre) => (
+        {['Adventure', 'Biography', 'Comedy', 'Drama', 'Fantasy', 'Fiction', 'Historical', 'Horror',
+        'Mystery', 'Non-Fiction', 'Romance', 'Science-Fiction','Crime','Psychology', 'Satire'].map((genre) => (
           <div
             key={genre}
             className={`genre-box ${genres.includes(genre) ? 'selected' : ''}`}
@@ -179,7 +165,14 @@ function Survey() {
       </button>
 
       {error && <p className="error-message">{error}</p>}
-      {recommendation && <p className="recommendation-message">{recommendation}</p>}
+      
+      {recommendation && (<div className="recommendation-message">
+    {recommendation.split('\n').map((line, index) => (
+      <p key={index}>{line}</p>
+    ))}
+  </div>
+)}
+
     </div>
   );
 }

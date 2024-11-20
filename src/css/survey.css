@@ -5,7 +5,7 @@
    margin: 20px auto;
    font-family: Arial, sans-serif;
    max-width: 700px; /* Set a max-width for the container */
-   width: 90%; /* Make the container responsive */
+   width: 80%; /* Make the container responsive */
 
    padding: 20px;
    box-sizing: border-box; /* Include padding in the width calculation */
