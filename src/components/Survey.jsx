@@ -30,7 +30,7 @@ function Survey() {
     - Publish Date: "${publishDate}"
     - Page Count: "${pageCount}"
     
-    Only give me one book recommendation with the book title, author, age rating, and the country it is published in.`;
+    Only give me one book recommendation with the book title, author, age rating, and the country it's published in.`;
   };
 
 
