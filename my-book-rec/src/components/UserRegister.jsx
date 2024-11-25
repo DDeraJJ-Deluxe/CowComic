@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { auth, db} from './firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from "firebase/firestore";
-
 import '../css/userregister.css';
 import user_icon from '../assets/user.png'
 import email_icon from '../assets/email.png'
@@ -15,22 +14,26 @@ function UserRegister() {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [error, setError] = useState('');
+   const navigate = useNavigate();
 
    const handleRegister = async () => {
       const auth = getAuth();
       try {
          await createUserWithEmailAndPassword(auth, email, password);
-         console.log('User registered successfully');
+         alert('User registered successfully!');
          const user = auth.currentUser;
-         // If user is created successfully, store additional information in Firestore
+         // if user is created successfully, store additional information in Firestore
          if (user) {
             await setDoc(doc(db, 'Users', user.uid), {
                username: username,
                email: user.email
             });
          }
+
+         // redirect user to login homepage after successful registration
+         navigate('/login-home');
       } catch (err) {
-         // Customize error messages based on Firebase error codes
+         // customize error messages based on Firebase error codes
          switch (err.code) {
             case 'auth/invalid-email':
                setError('Please enter a valid email address.');

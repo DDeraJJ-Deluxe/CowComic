@@ -15,7 +15,6 @@ function NavBar({isLoggedIn, username, onLogout}) {
             {isLoggedIn ? (
                <>
                   <li><Link to="/saved-books">Saved Books</Link></li>
-                  {/* <li><button onClick={onLogout} className="logout-btn">Logout</button></li> */}
                   <li><a href="/" onClick={handleLogoutClick}>Logout</a></li>
                </>
             ) : (

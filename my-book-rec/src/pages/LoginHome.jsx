@@ -32,9 +32,8 @@ function LoginHome() {
             timestamp: new Date(),
          });
          
-         alert(`Book saved! ID: ${docRef.id}`);
+         alert(`Book saved!`);
       } catch (e) {
-         //
          console.error("Error saving book recommendation: ", e);
          alert("Failed to save book recommendation.");
       }
