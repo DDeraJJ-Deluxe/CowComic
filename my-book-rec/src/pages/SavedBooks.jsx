@@ -54,7 +54,13 @@ function SavedBooks() {
             ) : (
                <ul>
                   {savedBooks.map((book) => (
-                     <li key={book.id}>{book.recommendation}</li>
+                     <li key={book.id} className="saved-book">
+                        <h3>{book.recommendation.title}</h3>
+                        <p><strong>Author:</strong> {book.recommendation.author}</p>
+                        <p><strong>Age Rating:</strong> {book.recommendation.ageRating}</p>
+                        <p><strong>Country Published:</strong> {book.recommendation.countryPublished}</p>
+                        <p><strong>Summary:</strong> {book.recommendation.summary}</p>
+                     </li>
                   ))}
                </ul>
             )}

@@ -29,12 +29,18 @@ function Survey() {
     - Age Rating: "${ageRating}"
     - Publish Date: "${publishDate}"
     - Page Count: "${pageCount}"
-    
-    Only give me the book title, author, age rating, country published, and a 2-3 sentence summary.`;
+  
+    Respond in JSON format with the following fields:
+    {
+      "title": "Book Title",
+      "author": "Author Name",
+      "ageRating": "Age Rating",
+      "countryPublished": "Country Published",
+      "summary": "A 2-3 sentence summary of the book"
+    }`;
   };
 
-
-    // Handles form submission and API request
+  // Handles form submission and API request
   const handleSubmit = async () => {
     if (genres.length === 0 || !keyword || !ageRating || !publishDate || !pageCount) {
       setError('Please fill out all fields.');
@@ -45,8 +51,6 @@ function Survey() {
     setError('');
     
     try {
-      
-      
       const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
       if (!API_KEY) {
         throw new Error("API key is missing or not loaded correctly.");
@@ -73,7 +77,9 @@ function Survey() {
       );
       
       if (response.data && response.data.choices && response.data.choices[0]) {
-        setRecommendation(response.data.choices[0].message.content);
+        const content = response.data.choices[0].message.content;
+        const parsedRecommendation= JSON.parse(content);
+        setRecommendation(parsedRecommendation);
       } else {
         throw new Error('Unexpected API response format.');
       }
@@ -166,12 +172,22 @@ function Survey() {
 
       {error && <p className="error-message">{error}</p>}
       
-      {recommendation && (<div className="recommendation-message">
-    {recommendation.split('\n').map((line, index) => (
-      <p key={index}>{line}</p>
-    ))}
-  </div>
-)}
+      {/* {recommendation && (<div className="recommendation-message">
+        {recommendation.split('\n').map((line, index) => (<p key={index}>{line}</p>))}
+      </div>
+      )} */}
+
+      {recommendation && (
+        <div className="recommendation-message">
+        <h3>Recommended Book:</h3>
+        <p><strong>Title:</strong> {recommendation.title}</p>
+        <p><strong>Author:</strong> {recommendation.author}</p>
+        <p><strong>Age Rating:</strong> {recommendation.ageRating}</p>
+        <p><strong>Country Published:</strong> {recommendation.countryPublished}</p>
+        <p><strong>Summary:</strong> {recommendation.summary}</p>
+      </div>
+    )}
+
 
     </div>
   );
