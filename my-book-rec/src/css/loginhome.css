@@ -1,0 +1,32 @@
+/* colors: #5465FF #788BFF #9BB1FF #BFD7FF #E2FDFF */
+.save-btn-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+}
+
+#save-btn {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 150px;
+   height: 50px;
+   background-color: #788BFF;
+   color: #E2FDFF;
+   font-size: 18px;
+   font-weight: bold;
+   cursor: pointer;
+   border: 2px solid #5465FF;
+   margin: 16px;
+   border-radius: 50px;
+   font-size: 18px;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+#save-btn:hover {
+   background-color: #BFD7FF;
+   color: #5465FF;
+   border: 2px solid #5465FF;
+}

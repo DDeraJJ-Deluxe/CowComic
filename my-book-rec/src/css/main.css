@@ -1,12 +1,22 @@
 /* colors: #5465FF #788BFF #9BB1FF #BFD7FF #E2FDFF */
 
-body {
+html, body {
   background-color: #E2FDFF;
   margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
  }
 
+ #root { 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Makes the main container fill the viewport height */
+}
+
  main {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +85,7 @@ body {
   color: #5465FF;
   font-size: 20px;
   font-family: Verdana;
-  position: sticky;
+  position: relative;
   bottom: 0;
   width: 100%;
   display: flex;

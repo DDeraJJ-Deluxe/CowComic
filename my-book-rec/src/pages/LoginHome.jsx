@@ -41,7 +41,9 @@ function LoginHome() {
    return (
       <>
          <Survey />
-         <button id="save-btn" onClick={handleSaveBook}>Save Book</button>
+            <div className="save-btn-container">
+               <button id="save-btn" onClick={handleSaveBook}>Save Book</button>
+            </div>
       </>
    )
 }
