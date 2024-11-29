@@ -5,6 +5,7 @@ import { auth } from './firebase';
 import '../css/userlogin.css';
 import email_icon from '../assets/email.png';
 import pass_icon from '../assets/padlock.png';
+import logo from '../assets/cclogo.png';
 
 function UserLogin() {
    const [email, setEmail] = useState('');
@@ -23,6 +24,11 @@ function UserLogin() {
 
    return (
       <div id="login-container">
+         {/* Logo Section */}
+         <div className="logo-container">
+         <img src={logo} alt="Logo" className="logo" />
+         </div>
+
          <div id="login-header">
             <div id="login-text">Login</div>
          </div>

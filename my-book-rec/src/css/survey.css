@@ -21,14 +21,16 @@
 
 /* Input and Select */
 input[type="text"], select {
-   width: 50%; /* Set width to 80% to leave some space on either side */
-   max-width: 400px; /* Set a max-width for larger screens */
-   padding: 8px;
+   width: 50%; /* Increase width for a larger input field */
+   max-width: none; /* Remove the restriction of a maximum width */
+   padding: 12px; /* Increase padding for a more prominent look */
    margin-top: 5px;
    margin-bottom: 15px;
    border: 1px solid #ccc;
    border-radius: 5px;
+   font-size: 16px; /* Optional: Increase font size for better readability */
 }
+
 /* Genre Section */
 .genre-box {
    flex: 1 1 calc(25% - 10px); /* Adjust width; 4 boxes per row */
@@ -63,6 +65,7 @@ input[type="text"], select {
    gap: 8px; /* Space between boxes */
    margin-bottom: 20px;
    justify-content: center; /* Center the genre boxes horizontally */
+   color: #5465FF
 }
 
 .age-rating {
@@ -80,3 +83,28 @@ input[type="text"], select {
 label {
    display: block; /* Each label on a new line */
 }
+
+.logo-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: -50px; /* Reduce the space between the logo and the content below */
+}
+
+.survey-title {
+   color: #5465FF; /* Change to your preferred color */
+   font-family: 'Playfair Display', serif;/* Change to your preferred font */
+   font-size: 30px; /* Adjust the font size if needed */
+   font-weight: bold; /* Make the text bold */
+   text-align: center; /* Center-align the title */
+   margin-bottom: 20px; /* Add spacing below the title */
+}
+
+
+/* Logo Image */ /*just in case*/ 
+/* .logo {
+   max-width: 200px; 
+   max-height: 200px;
+   width: auto;
+   height: auto;
+} */

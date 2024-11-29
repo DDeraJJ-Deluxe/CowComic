@@ -7,6 +7,7 @@ import '../css/userregister.css';
 import user_icon from '../assets/user.png'
 import email_icon from '../assets/email.png'
 import pass_icon from '../assets/padlock.png'
+import logo from '../assets/cclogo.png';
 
 // this component creates the user register component
 function UserRegister() {
@@ -59,6 +60,11 @@ function UserRegister() {
 
    return (
       <div id="reg-container">
+         {/* Logo Section */}
+         <div className="logo-container">
+         <img src={logo} alt="Logo" className="logo" />
+         </div>
+
          <div id="reg-header">
             <div id="reg-text">Sign Up</div>
          </div>

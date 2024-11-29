@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"; // using axios for the API request
 import '../css/survey.css';// CSS for styling
+import logo from '../assets/cclogo.png';
 
 
 
@@ -93,8 +94,13 @@ function Survey() {
 
   return (
     <div className="survey-container">
-      <h2>Book Survey Component</h2>
       
+      {/* Logo Section */}
+      <div className="logo-container">
+      <img src={logo} alt="Logo" className="logo" />
+      </div>
+      
+      <h2 className="survey-title">Book Survey Component</h2>
 
       {/* Genres Section */}
       <label>Genres: </label>
