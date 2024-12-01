@@ -29,6 +29,7 @@ function SavedBooks() {
                id: doc.id,
                ...doc.data(),
             }));
+            // const books = querySnapshot.docs.map(doc => doc.data());
 
             setSavedBooks(books);
         } catch (e) {

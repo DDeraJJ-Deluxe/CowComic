@@ -3,8 +3,6 @@ import axios from "axios"; // using axios for the API request
 import '../css/survey.css';// CSS for styling
 import logo from '../assets/cclogo.png';
 
-
-
 function Survey() {
   const [genres, setGenres] = useState([]);
   const [keyword, setKeyword] = useState('');
@@ -23,27 +21,24 @@ function Survey() {
 
   // Generate the prompt for the API
   const generatePrompt = () => {
-    return `Recommend me a book with the following genres: ${genres.join(', ')}
-
-    Please also consider:
+    return `Recommend me a book with:
+    - Genres: ${genres.join(', ')}
     - Keyword: "${keyword}"
     - Age Rating: "${ageRating}"
     - Publish Date: "${publishDate}"
     - Page Count: "${pageCount}"
   
-    Respond in JSON format with the following fields:
-    {
-      "title": "Book Title",
+    Respond in JSON format:
+    {"title": "Book Title",
       "author": "Author Name",
       "ageRating": "Age Rating",
       "countryPublished": "Country Published",
-      "summary": "A 2-3 sentence summary of the book"
-    }`;
+      "summary": "A 2-3 sentence summary of the book"}`;
   };
 
   // Handles form submission and API request
   const handleSubmit = async () => {
-    if (genres.length === 0 || !keyword || !ageRating || !publishDate || !pageCount) {
+    if (genres.length === 0 || !keyword || !ageRating || publishDate === '' || pageCount === '') {
       setError('Please fill out all fields.');
       return;
     }
@@ -79,8 +74,13 @@ function Survey() {
       
       if (response.data && response.data.choices && response.data.choices[0]) {
         const content = response.data.choices[0].message.content;
+        console.log("API response: ", content);
         const parsedRecommendation= JSON.parse(content);
         setRecommendation(parsedRecommendation);
+
+        // if (onSaveRecommendation) {
+        //   onSaveRecommendation(parsedRecommendation);
+        // }
       } else {
         throw new Error('Unexpected API response format.');
       }
@@ -100,7 +100,7 @@ function Survey() {
       <img src={logo} alt="Logo" className="logo" />
       </div>
       
-      <h2 className="survey-title">Book Survey Component</h2>
+      <h2 className="survey-title">Book Survey</h2>
 
       {/* Genres Section */}
       <label>Genres: </label>
@@ -152,6 +152,7 @@ function Survey() {
         value={publishDate}
         onChange={(e) => setPublishDate(e.target.value)}
       >
+        <option value="">Select a publish date</option> {/* Placeholder */}
         <option value="2024">2024</option>
         <option value="2023">2023</option>
         <option value="2022">2022</option>
@@ -166,6 +167,7 @@ function Survey() {
         value={pageCount}
         onChange={(e) => setPageCount(e.target.value)}
       >
+        <option value="">Select a page count</option> {/* Placeholder */}
         <option value="less-100">&lt; 100 pages</option>
         <option value="100-300">100 - 300 pages</option>
         <option value="300+">&gt; 300 pages</option>
