@@ -48,23 +48,25 @@ function SavedBooks() {
    
    return (
       <>
-         <div className="saved-books">
-            <h1>Saved Books</h1>
-            {savedBooks.length === 0 ? (
-               <p>No books saved yet!</p>
-            ) : (
-               <ul>
-                  {savedBooks.map((book) => (
-                     <li key={book.id} className="saved-book">
-                        <h3>{book.recommendation.title}</h3>
-                        <p><strong>Author:</strong> {book.recommendation.author}</p>
-                        <p><strong>Age Rating:</strong> {book.recommendation.ageRating}</p>
-                        <p><strong>Country Published:</strong> {book.recommendation.countryPublished}</p>
-                        <p><strong>Summary:</strong> {book.recommendation.summary}</p>
-                     </li>
-                  ))}
-               </ul>
-            )}
+         <div className="saved-books-container">
+            <h1 id="user-sb-title">Saved Books</h1>
+            <div className="saved-book">
+               {savedBooks.length === 0 ? (
+                  <p>No books saved yet!</p>
+               ) : (
+                  <ul>
+                     {savedBooks.map((book) => (
+                        <li key={book.id} className="book-li">
+                           <h3>{book.title}</h3>
+                           <p><strong>Author:</strong> {book.author}</p>
+                           <p><strong>Age Rating:</strong> {book.ageRating}</p>
+                           <p><strong>Country Published:</strong> {book.countryPublished}</p>
+                           <p><strong>Summary:</strong> {book.summary}</p>
+                        </li>
+                     ))}
+                  </ul>
+               )}
+            </div>
          </div>
       </>
    )

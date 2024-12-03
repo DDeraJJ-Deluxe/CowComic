@@ -6,10 +6,18 @@ import { collection, addDoc } from "firebase/firestore";
 import '../css/loginhome.css';
 
 function LoginHome() {
-   // const [bookRecommendation, setRecommendation] = useState(null);
+   // use state to get the JSON recommendation from chatgpt
+   const [JsonRecommendation, setJsonRecommendation] = useState(null);
+
+   // gets the JSON recommendation from Survey and set it as the user's recommendation in LoginHome
+   // this is used as a callback function so that the Survey can pass in the recommendation to the LoginHome 
+   const handleJsonFromSurvey = (data) => {
+      setJsonRecommendation(data);
+   }
+
    const handleSaveBook = async () => {
       // access the recommendation from the Survey component
-      const bookRecommendation = document.querySelector(".recommendation-message").textContent;
+      const bookRecommendation = JsonRecommendation;
 
       if (!bookRecommendation || !bookRecommendation.title) {
         alert("No book recommendation to save!");
@@ -25,17 +33,16 @@ function LoginHome() {
             alert("You need to be logged in to save a book.");
             return;
          }
-         
+
          // save the recommendation to Firestore
          const docRef = await addDoc(collection(db, "savedBooks"), {
             userId: user.uid,
-            // title: bookRecommendation.title,
-            // author: bookRecommendation.author,
-            // ageRating: bookRecommendation.ageRating,
-            // countryPublished: bookRecommendation.countryPublished,
-            // summary: bookRecommendation.summary,
-            bookRecommendation,
-            timestamp: new Date(),
+            title: bookRecommendation.title,
+            author: bookRecommendation.author,
+            ageRating: bookRecommendation.ageRating,
+            countryPublished: bookRecommendation.countryPublished,
+            summary: bookRecommendation.summary,
+            timestamp: new Date()
          });
          
          alert(`Book "${bookRecommendation.title}" saved!`);
@@ -46,8 +53,8 @@ function LoginHome() {
     };
    return (
       <>
-         {/* <Survey onSaveRecommendation={setRecommendation}/> */}
-         <Survey />
+         {/* pass in the callback function as a prop */}
+         <Survey onSubmit={handleJsonFromSurvey}/>
             <div className="save-btn-container">
                <button id="save-btn" onClick={handleSaveBook}>Save Book</button>
             </div>

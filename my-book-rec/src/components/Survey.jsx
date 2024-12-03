@@ -3,7 +3,9 @@ import axios from "axios"; // using axios for the API request
 import '../css/survey.css';// CSS for styling
 import logo from '../assets/cclogo.png';
 
-function Survey() {
+// this is the survey component for users to fill out their survey to get a book recommendation
+// onSubmit is callback function used to pass recommendation to LoginHome.jsx
+function Survey({ onSubmit }) {
   const [genres, setGenres] = useState([]);
   const [keyword, setKeyword] = useState('');
   const [ageRating, setAgeRating] = useState('');
@@ -73,14 +75,16 @@ function Survey() {
       );
       
       if (response.data && response.data.choices && response.data.choices[0]) {
+        // get chatgpt response
         const content = response.data.choices[0].message.content;
+        // console log to confirm gpt is even giving a response
         console.log("API response: ", content);
+        // parse the gpt response in JSON format
         const parsedRecommendation= JSON.parse(content);
+        // use state to show parsedRecommendation
         setRecommendation(parsedRecommendation);
-
-        // if (onSaveRecommendation) {
-        //   onSaveRecommendation(parsedRecommendation);
-        // }
+        // use a callback function to save parsedRecommendation in LoginHome.jsx
+        onSubmit(parsedRecommendation);
       } else {
         throw new Error('Unexpected API response format.');
       }
@@ -179,11 +183,6 @@ function Survey() {
       </button>
 
       {error && <p className="error-message">{error}</p>}
-      
-      {/* {recommendation && (<div className="recommendation-message">
-        {recommendation.split('\n').map((line, index) => (<p key={index}>{line}</p>))}
-      </div>
-      )} */}
 
       {recommendation && (
         <div className="recommendation-message">
@@ -195,8 +194,6 @@ function Survey() {
         <p><strong>Summary:</strong> {recommendation.summary}</p>
       </div>
     )}
-
-
     </div>
   );
 }
