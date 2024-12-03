@@ -52,7 +52,7 @@ function SavedBooks() {
             <h1 id="user-sb-title">Saved Books</h1>
             <div className="saved-book">
                {savedBooks.length === 0 ? (
-                  <p>No books saved yet!</p>
+                  <p className="no-books-msg">No books saved yet!</p>
                ) : (
                   <ul>
                      {savedBooks.map((book) => (
