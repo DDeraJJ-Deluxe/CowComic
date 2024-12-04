@@ -3,6 +3,43 @@ import axios from "axios"; // using axios for the API request
 import '../css/survey.css';// CSS for styling
 import logo from '../assets/cclogo.png';
 
+import adventureIcon from '../assets/Genre Icons/adventure.png';
+import biographyIcon from '../assets/Genre Icons/biography.png';
+import comedyIcon from '../assets/Genre Icons/comedy.png';
+import dramaIcon from '../assets/Genre Icons/drama.png';
+import fantasyIcon from '../assets/Genre Icons/fantasy.png';
+import fictionIcon from '../assets/Genre Icons/fiction.png';
+import historicalIcon from '../assets/Genre Icons/historical.png';
+import horrorIcon from '../assets/Genre Icons/horror.png';
+import mysteryIcon from '../assets/Genre Icons/mystery.png';
+import nonFictionIcon from '../assets/Genre Icons/non-fiction.png';
+import romanceIcon from '../assets/Genre Icons/romance.png';
+import scienceFictionIcon from '../assets/Genre Icons/sci-fi.png';
+import crimeIcon from '../assets/Genre Icons/crime.png';
+import psychologyIcon from '../assets/Genre Icons/psychological.png';
+import satireIcon from '../assets/Genre Icons/satire.png';
+
+
+const genreImages = {
+  Adventure: adventureIcon,
+  Biography: biographyIcon,
+  Comedy: comedyIcon,
+  Drama: dramaIcon,
+  Fantasy: fantasyIcon,
+  Fiction: fictionIcon,
+  Historical: historicalIcon,
+  Horror: horrorIcon,
+  Mystery: mysteryIcon,
+  'Non-Fiction': nonFictionIcon,
+  Romance: romanceIcon,
+  'Science-Fiction': scienceFictionIcon,
+  Crime: crimeIcon,
+  Psychology: psychologyIcon,
+  Satire: satireIcon,
+};
+
+
+
 // this is the survey component for users to fill out their survey to get a book recommendation
 // onSubmit is callback function used to pass recommendation to LoginHome.jsx
 function Survey({ onSubmit }) {
@@ -15,11 +52,35 @@ function Survey({ onSubmit }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  
+
   const handleGenreClick = (genre) => {
     setGenres(prevGenres =>
       prevGenres.includes(genre) ? prevGenres.filter(g => g !== genre) : [...prevGenres, genre]
     );
   };
+
+  // Helper function to get genre icons based on 3 cases
+  const getGenreIcons = () => {
+    if (genres.length === 1) {
+      return [genreImages[genres[0]]];
+    } else if (genres.length > 1 && genres.length <= 3) {
+      return genres.map(genre => genreImages[genre]);
+    } else if (genres.length > 3) { // random imagine if more than 3 genres
+      const shuffledGenres = genres.sort(() => Math.random() - 0.5);
+      return shuffledGenres.slice(0, 3).map(genre => genreImages[genre]);
+    }
+    return [];
+  };
+  
+
+
+
+
+
+
+
+
 
   // Generate the prompt for the API
   const generatePrompt = () => {
@@ -183,6 +244,14 @@ function Survey({ onSubmit }) {
       </button>
 
       {error && <p className="error-message">{error}</p>}
+
+      {/* Genre Icons Section - Separate from Recommendation */}
+      
+      <div className="genre-icons">
+        {getGenreIcons().map((icon, index) => (
+          <img key={index} src={icon} alt="Genre Icon" className="genre-icon" />
+        ))}
+      </div>
 
       {recommendation && (
         <div className="recommendation-message">
