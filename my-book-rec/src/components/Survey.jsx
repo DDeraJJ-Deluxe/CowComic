@@ -38,8 +38,6 @@ const genreImages = {
   Satire: satireIcon,
 };
 
-
-
 // this is the survey component for users to fill out their survey to get a book recommendation
 // onSubmit is callback function used to pass recommendation to LoginHome.jsx
 function Survey({ onSubmit }) {
@@ -50,9 +48,7 @@ function Survey({ onSubmit }) {
   const [pageCount, setPageCount] = useState('');
   const [recommendation, setRecommendation] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  
+  const [error, setError] = useState(''); 
 
   const handleGenreClick = (genre) => {
     setGenres(prevGenres =>
@@ -72,15 +68,6 @@ function Survey({ onSubmit }) {
     }
     return [];
   };
-  
-
-
-
-
-
-
-
-
 
   // Generate the prompt for the API
   const generatePrompt = () => {
