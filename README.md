@@ -23,7 +23,7 @@ Cal Poly Pomona, though known for broncos, has cute cow merchandise (stickers, p
 - GitHub
 - Figma
 
-## Deployment Instructions
+## Usage Instructions
 
 After pulling/downloading our code run the following commands in the terminal:
 
@@ -32,7 +32,7 @@ After pulling/downloading our code run the following commands in the terminal:
 
 Then, click on the local host link to view the CowComic website
 
-## Project Release Notes
+## Features
 1. CowComic Home Page
    
    <img src="screenshots/CC_Home.png" alt="screenshot cowcomic home page" width="600">
@@ -48,10 +48,7 @@ Then, click on the local host link to view the CowComic website
 
    <img src="screenshots/CC_Login.png" alt="screenshot of cowcomic login page" width="600"/>
    
-      - Users can login to existing account
    <img src="screenshots/CC_Register.png" alt="screenshot of cowcomic register page" width="600"/>
-   
-      - Users can register for a new account
 
 4. Saved Books
 
